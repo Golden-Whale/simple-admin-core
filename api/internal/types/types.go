@@ -662,12 +662,12 @@ type ApiListReq struct {
 	PageInfo
 	// API path | API路径
 	// Required: true
-	// Max length: 30
-	Path string `json:"path" validate:"omitempty,max=30"`
+	// Max length: 100
+	Path string `json:"path" validate:"omitempty,max=100"`
 	// API Description | API 描述
 	// Required: true
-	// Max length: 30
-	Description string `json:"description" validate:"omitempty,max=30"`
+	// Max length: 50
+	Description string `json:"description" validate:"omitempty,max=50"`
 	// API group | API分组
 	// Require: true
 	// Max length: 10
@@ -729,4 +729,19 @@ type MenuAuthorityInfoResp struct {
 	RoleId uint64 `json:"roleId"`
 	// menu ID array | 菜单ID数组
 	MenuIds []uint64 `json:"menuIds"`
+}
+
+// Hello response | Hello返回信息
+// swagger:response HelloResp
+type HelloResp struct {
+	// Msg
+	Msg string `json:"msg"`
+}
+
+// Hello request | Hello请求
+// swagger:model HelloReq
+type HelloReq struct {
+	// Name | 名称
+	// Required: true
+	Name string `json:"name" validate:"max=10"`
 }

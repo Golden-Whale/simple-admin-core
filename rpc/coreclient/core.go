@@ -24,6 +24,7 @@ type (
 	CreatePolicyReq            = core.CreatePolicyReq
 	Empty                      = core.Empty
 	GetUserListReq             = core.GetUserListReq
+	HelloReq                   = core.HelloReq
 	IDReq                      = core.IDReq
 	LoginReq                   = core.LoginReq
 	LoginResp                  = core.LoginResp
@@ -79,6 +80,8 @@ type (
 		// authorization management service
 		GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error)
 		CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMenuAuthorityReq, opts ...grpc.CallOption) (*BaseResp, error)
+		// example
+		Hello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*BaseResp, error)
 	}
 
 	defaultCore struct {
@@ -221,4 +224,10 @@ func (m *defaultCore) GetMenuAuthority(ctx context.Context, in *IDReq, opts ...g
 func (m *defaultCore) CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMenuAuthorityReq, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.CreateOrUpdateMenuAuthority(ctx, in, opts...)
+}
+
+// example
+func (m *defaultCore) Hello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.Hello(ctx, in, opts...)
 }

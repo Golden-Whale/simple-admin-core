@@ -8,6 +8,7 @@ import (
 	authority "github.com/suyuan32/simple-admin-core/api/internal/handler/authority"
 	captcha "github.com/suyuan32/simple-admin-core/api/internal/handler/captcha"
 	core "github.com/suyuan32/simple-admin-core/api/internal/handler/core"
+	example "github.com/suyuan32/simple-admin-core/api/internal/handler/example"
 	menu "github.com/suyuan32/simple-admin-core/api/internal/handler/menu"
 	role "github.com/suyuan32/simple-admin-core/api/internal/handler/role"
 	user "github.com/suyuan32/simple-admin-core/api/internal/handler/user"
@@ -226,6 +227,20 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/authority/menu/role",
 					Handler: authority.GetMenuAuthorityHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/example/hello",
+					Handler: example.HelloHandler(serverCtx),
 				},
 			}...,
 		),

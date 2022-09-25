@@ -2454,6 +2454,54 @@ func (x *RoleMenuAuthorityResp) GetMenuId() []uint64 {
 	return nil
 }
 
+// example
+type HelloReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *HelloReq) Reset() {
+	*x = HelloReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_core_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *HelloReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HelloReq) ProtoMessage() {}
+
+func (x *HelloReq) ProtoReflect() protoreflect.Message {
+	mi := &file_core_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HelloReq.ProtoReflect.Descriptor instead.
+func (*HelloReq) Descriptor() ([]byte, []int) {
+	return file_core_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *HelloReq) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 var File_core_proto protoreflect.FileDescriptor
 
 var file_core_proto_rawDesc = []byte{
@@ -2727,7 +2775,9 @@ var file_core_proto_rawDesc = []byte{
 	0x28, 0x04, 0x52, 0x06, 0x6d, 0x65, 0x6e, 0x75, 0x49, 0x64, 0x22, 0x30, 0x0a, 0x15, 0x52, 0x6f,
 	0x6c, 0x65, 0x4d, 0x65, 0x6e, 0x75, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52,
 	0x65, 0x73, 0x70, 0x12, 0x17, 0x0a, 0x07, 0x6d, 0x65, 0x6e, 0x75, 0x5f, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x03, 0x28, 0x04, 0x52, 0x06, 0x6d, 0x65, 0x6e, 0x75, 0x49, 0x64, 0x32, 0xd6, 0x0a, 0x0a,
+	0x20, 0x03, 0x28, 0x04, 0x52, 0x06, 0x6d, 0x65, 0x6e, 0x75, 0x49, 0x64, 0x22, 0x1e, 0x0a, 0x08,
+	0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x71, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x32, 0xff, 0x0a, 0x0a,
 	0x04, 0x63, 0x6f, 0x72, 0x65, 0x12, 0x2b, 0x0a, 0x0c, 0x69, 0x6e, 0x69, 0x74, 0x44, 0x61, 0x74,
 	0x61, 0x62, 0x61, 0x73, 0x65, 0x12, 0x0b, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x45, 0x6d, 0x70,
 	0x74, 0x79, 0x1a, 0x0e, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x65,
@@ -2813,8 +2863,10 @@ var file_core_proto_rawDesc = []byte{
 	0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x1a, 0x2e, 0x63, 0x6f, 0x72, 0x65,
 	0x2e, 0x52, 0x6f, 0x6c, 0x65, 0x4d, 0x65, 0x6e, 0x75, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
 	0x74, 0x79, 0x52, 0x65, 0x71, 0x1a, 0x0e, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x42, 0x61, 0x73,
-	0x65, 0x52, 0x65, 0x73, 0x70, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x27, 0x0a, 0x05, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x12, 0x0e,
+	0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x71, 0x1a, 0x0e,
+	0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x42, 0x08,
+	0x5a, 0x06, 0x2e, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2829,7 +2881,7 @@ func file_core_proto_rawDescGZIP() []byte {
 	return file_core_proto_rawDescData
 }
 
-var file_core_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_core_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_core_proto_goTypes = []interface{}{
 	(*Empty)(nil),                      // 0: core.Empty
 	(*IDReq)(nil),                      // 1: core.IDReq
@@ -2864,6 +2916,7 @@ var file_core_proto_goTypes = []interface{}{
 	(*ApiPageReq)(nil),                 // 30: core.ApiPageReq
 	(*RoleMenuAuthorityReq)(nil),       // 31: core.RoleMenuAuthorityReq
 	(*RoleMenuAuthorityResp)(nil),      // 32: core.RoleMenuAuthorityResp
+	(*HelloReq)(nil),                   // 33: core.HelloReq
 }
 var file_core_proto_depIdxs = []int32{
 	9,  // 0: core.UserListResp.data:type_name -> core.UserInfoResp
@@ -2903,33 +2956,35 @@ var file_core_proto_depIdxs = []int32{
 	30, // 34: core.core.getApiList:input_type -> core.ApiPageReq
 	1,  // 35: core.core.getMenuAuthority:input_type -> core.IDReq
 	31, // 36: core.core.createOrUpdateMenuAuthority:input_type -> core.RoleMenuAuthorityReq
-	3,  // 37: core.core.initDatabase:output_type -> core.BaseResp
-	6,  // 38: core.core.login:output_type -> core.LoginResp
-	3,  // 39: core.core.changePassword:output_type -> core.BaseResp
-	3,  // 40: core.core.createOrUpdateUser:output_type -> core.BaseResp
-	9,  // 41: core.core.getUserById:output_type -> core.UserInfoResp
-	10, // 42: core.core.getUserList:output_type -> core.UserListResp
-	3,  // 43: core.core.deleteUser:output_type -> core.BaseResp
-	3,  // 44: core.core.updateProfile:output_type -> core.BaseResp
-	3,  // 45: core.core.createOrUpdateMenu:output_type -> core.BaseResp
-	3,  // 46: core.core.deleteMenu:output_type -> core.BaseResp
-	16, // 47: core.core.getMenuListByRole:output_type -> core.MenuInfoList
-	16, // 48: core.core.getMenuByPage:output_type -> core.MenuInfoList
-	3,  // 49: core.core.createOrUpdateMenuParam:output_type -> core.BaseResp
-	3,  // 50: core.core.deleteMenuParam:output_type -> core.BaseResp
-	21, // 51: core.core.geMenuParamListByMenuId:output_type -> core.MenuParamListResp
-	3,  // 52: core.core.createOrUpdateRole:output_type -> core.BaseResp
-	3,  // 53: core.core.deleteRole:output_type -> core.BaseResp
-	22, // 54: core.core.getRoleById:output_type -> core.RoleInfo
-	23, // 55: core.core.getRoleList:output_type -> core.RoleListResp
-	3,  // 56: core.core.setRoleStatus:output_type -> core.BaseResp
-	3,  // 57: core.core.createOrUpdateApi:output_type -> core.BaseResp
-	3,  // 58: core.core.deleteApi:output_type -> core.BaseResp
-	29, // 59: core.core.getApiList:output_type -> core.ApiListResp
-	32, // 60: core.core.getMenuAuthority:output_type -> core.RoleMenuAuthorityResp
-	3,  // 61: core.core.createOrUpdateMenuAuthority:output_type -> core.BaseResp
-	37, // [37:62] is the sub-list for method output_type
-	12, // [12:37] is the sub-list for method input_type
+	33, // 37: core.core.hello:input_type -> core.HelloReq
+	3,  // 38: core.core.initDatabase:output_type -> core.BaseResp
+	6,  // 39: core.core.login:output_type -> core.LoginResp
+	3,  // 40: core.core.changePassword:output_type -> core.BaseResp
+	3,  // 41: core.core.createOrUpdateUser:output_type -> core.BaseResp
+	9,  // 42: core.core.getUserById:output_type -> core.UserInfoResp
+	10, // 43: core.core.getUserList:output_type -> core.UserListResp
+	3,  // 44: core.core.deleteUser:output_type -> core.BaseResp
+	3,  // 45: core.core.updateProfile:output_type -> core.BaseResp
+	3,  // 46: core.core.createOrUpdateMenu:output_type -> core.BaseResp
+	3,  // 47: core.core.deleteMenu:output_type -> core.BaseResp
+	16, // 48: core.core.getMenuListByRole:output_type -> core.MenuInfoList
+	16, // 49: core.core.getMenuByPage:output_type -> core.MenuInfoList
+	3,  // 50: core.core.createOrUpdateMenuParam:output_type -> core.BaseResp
+	3,  // 51: core.core.deleteMenuParam:output_type -> core.BaseResp
+	21, // 52: core.core.geMenuParamListByMenuId:output_type -> core.MenuParamListResp
+	3,  // 53: core.core.createOrUpdateRole:output_type -> core.BaseResp
+	3,  // 54: core.core.deleteRole:output_type -> core.BaseResp
+	22, // 55: core.core.getRoleById:output_type -> core.RoleInfo
+	23, // 56: core.core.getRoleList:output_type -> core.RoleListResp
+	3,  // 57: core.core.setRoleStatus:output_type -> core.BaseResp
+	3,  // 58: core.core.createOrUpdateApi:output_type -> core.BaseResp
+	3,  // 59: core.core.deleteApi:output_type -> core.BaseResp
+	29, // 60: core.core.getApiList:output_type -> core.ApiListResp
+	32, // 61: core.core.getMenuAuthority:output_type -> core.RoleMenuAuthorityResp
+	3,  // 62: core.core.createOrUpdateMenuAuthority:output_type -> core.BaseResp
+	3,  // 63: core.core.hello:output_type -> core.BaseResp
+	38, // [38:64] is the sub-list for method output_type
+	12, // [12:38] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name
 	12, // [12:12] is the sub-list for extension extendee
 	0,  // [0:12] is the sub-list for field type_name
@@ -3337,6 +3392,18 @@ func file_core_proto_init() {
 				return nil
 			}
 		}
+		file_core_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*HelloReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -3344,7 +3411,7 @@ func file_core_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_core_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   33,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

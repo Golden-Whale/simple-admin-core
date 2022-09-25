@@ -152,3 +152,9 @@ func (s *CoreServer) CreateOrUpdateMenuAuthority(ctx context.Context, in *core.R
 	l := logic.NewCreateOrUpdateMenuAuthorityLogic(ctx, s.svcCtx)
 	return l.CreateOrUpdateMenuAuthority(in)
 }
+
+// example
+func (s *CoreServer) Hello(ctx context.Context, in *core.HelloReq) (*core.BaseResp, error) {
+	l := logic.NewHelloLogic(ctx, s.svcCtx)
+	return l.Hello(in)
+}

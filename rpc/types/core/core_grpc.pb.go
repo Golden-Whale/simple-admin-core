@@ -54,6 +54,8 @@ type CoreClient interface {
 	// authorization management service
 	GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error)
 	CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMenuAuthorityReq, opts ...grpc.CallOption) (*BaseResp, error)
+	// example
+	Hello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*BaseResp, error)
 }
 
 type coreClient struct {
@@ -289,6 +291,15 @@ func (c *coreClient) CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMe
 	return out, nil
 }
 
+func (c *coreClient) Hello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, "/core.core/hello", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CoreServer is the server API for Core service.
 // All implementations must embed UnimplementedCoreServer
 // for forward compatibility
@@ -325,6 +336,8 @@ type CoreServer interface {
 	// authorization management service
 	GetMenuAuthority(context.Context, *IDReq) (*RoleMenuAuthorityResp, error)
 	CreateOrUpdateMenuAuthority(context.Context, *RoleMenuAuthorityReq) (*BaseResp, error)
+	// example
+	Hello(context.Context, *HelloReq) (*BaseResp, error)
 	mustEmbedUnimplementedCoreServer()
 }
 
@@ -406,6 +419,9 @@ func (UnimplementedCoreServer) GetMenuAuthority(context.Context, *IDReq) (*RoleM
 }
 func (UnimplementedCoreServer) CreateOrUpdateMenuAuthority(context.Context, *RoleMenuAuthorityReq) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrUpdateMenuAuthority not implemented")
+}
+func (UnimplementedCoreServer) Hello(context.Context, *HelloReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Hello not implemented")
 }
 func (UnimplementedCoreServer) mustEmbedUnimplementedCoreServer() {}
 
@@ -870,6 +886,24 @@ func _Core_CreateOrUpdateMenuAuthority_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Core_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HelloReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).Hello(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/core.core/hello",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).Hello(ctx, req.(*HelloReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Core_ServiceDesc is the grpc.ServiceDesc for Core service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -976,6 +1010,10 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createOrUpdateMenuAuthority",
 			Handler:    _Core_CreateOrUpdateMenuAuthority_Handler,
+		},
+		{
+			MethodName: "hello",
+			Handler:    _Core_Hello_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

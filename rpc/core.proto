@@ -255,6 +255,13 @@ message RoleMenuAuthorityReq {
 message RoleMenuAuthorityResp {
   repeated uint64 menu_id = 1;
 }
+
+// example
+message HelloReq {
+  string name = 1;
+}
+
+
 // service
 
 service core {
@@ -296,4 +303,6 @@ service core {
   rpc getMenuAuthority (IDReq) returns (RoleMenuAuthorityResp);
   rpc createOrUpdateMenuAuthority (RoleMenuAuthorityReq) returns (BaseResp);
 
+  // example
+  rpc hello (HelloReq) returns (BaseResp);
 }

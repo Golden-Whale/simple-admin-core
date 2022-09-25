@@ -1,0 +1,49 @@
+syntax = "v1"
+
+info(
+    title: "type title here"
+    desc: "type desc here"
+    author: "type author here"
+    email: "type email here"
+    version: "type version here"
+)
+
+type (
+    // Hello response | Hello返回信息
+    // swagger:response HelloResp
+    HelloResp {
+        // Msg
+        Msg    string  `json:"msg"`
+
+    }
+
+    // Hello request | Hello请求
+    // swagger:model HelloReq
+    HelloReq {
+        // Name | 名称
+        // Required: true
+        Name   string `json:"name" validate:"max=10"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: example
+    middleware: Authority
+)
+
+service core {
+    // swagger:route POST /example/hello example hello
+    // Hello | Hello
+    // Parameters:
+    //  + name: body
+    //    require: true
+    //    in: body
+    //    type: HelloReq
+    // Responses:
+    //   200: HelloResp
+    //   401: HelloResp
+    //   500: HelloResp
+    @handler hello
+    post /example/hello (HelloReq) returns (HelloResp)
+}
