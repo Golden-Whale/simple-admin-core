@@ -1,9 +1,5 @@
 version: '3'
 
-volumes:
-  mysql:
-  redis:
-
 networks:
   simple-admin:
     driver: bridge
@@ -23,8 +19,6 @@ services:
     environment:
       MYSQL_DATABASE: 'simple_admin'
       MYSQL_ROOT_PASSWORD: 'simple-admin.'
-    volumes:
-      - mysql:/var/lib/mysql
     networks:
       simple-admin:
         aliases:
@@ -45,8 +39,6 @@ services:
     restart: always
     ports:
       - '6379:6379'
-    volumes:
-      - redis:/data
     networks:
       simple-admin:
         aliases:
@@ -61,7 +53,7 @@ services:
           cpus: '0.05'
           memory: 200M
   core-rpc:
-    image: ryanpower/core-rpc:0.1.7
+    image: ryanpower/core-rpc-demo:0.1.7
     container_name: core-rpc
     restart: always
     ports:
@@ -81,7 +73,7 @@ services:
           memory: 200M
 
   core-api:
-    image: ryanpower/core-api:0.1.7
+    image: ryanpower/core-api-demo:0.1.7
     container_name: core-api
     restart: always
     ports:
